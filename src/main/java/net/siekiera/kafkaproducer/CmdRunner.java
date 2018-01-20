@@ -1,32 +1,46 @@
 package net.siekiera.kafkaproducer;
 
-import org.apache.kafka.clients.producer.RecordMetadata;
+import net.siekiera.kafkaproducer.Tickets.TicketCreationService;
+import net.siekiera.kafkaproducer.Tickets.TicketProducer;
+import net.siekiera.kafkaproducer.Tickets.TicketProducerThread;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.Map;
+import java.util.concurrent.*;
 
 @Component
 public class CmdRunner implements CommandLineRunner {
     @Autowired
-    SimpleProducer producer;
+    TicketProducer producer;
+    @Autowired
+    Topics topics;
+    @Autowired
+    TicketCreationService ticketCreationService;
 
     @Override
-    public void run(String... strings) throws Exception {
-        final List<Thread> threads = new ArrayList<>();
-        ExecutorService executorService = Executors.newFixedThreadPool(2);
-        for (int i=0; i<4; i++)
-        {
-            executorService.submit(new ThreadRunner(i, i, producer));
+    public void run(String... strings) {
+        int numberOfTopics = topics.getTopics().size();
+        ExecutorService executorService = Executors.newFixedThreadPool(numberOfTopics);
+        List<Future<?>> futures = new ArrayList<>();
+
+        for (Map.Entry<String, String> topic : topics.getTopics().entrySet()) {
+            futures.add(executorService.submit(new TicketProducerThread(producer, topic.getKey(), ticketCreationService)));
+        }
+        for (int i=0; i<numberOfTopics; i++) {
+            try {
+                futures.get(i).get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
         }
         System.out.println("Threads running!");
         executorService.shutdown();
-        executorService.awaitTermination(1000, TimeUnit.SECONDS);
         System.out.println("Finished!");
     }
 }
