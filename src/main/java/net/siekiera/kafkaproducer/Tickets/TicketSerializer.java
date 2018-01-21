@@ -20,7 +20,7 @@ public class TicketSerializer implements Serializer<Ticket> {
     public byte[] serialize(String s, Ticket ticket) {
         byte[] returnValue = null;
         ObjectMapper objectMapper = new ObjectMapper();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss,SSS");
         objectMapper.setDateFormat(sdf);
         try {
             returnValue = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(ticket).getBytes();

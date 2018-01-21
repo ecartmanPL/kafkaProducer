@@ -14,7 +14,7 @@ import java.util.Random;
  */
 @Service
 public class TicketCreationService {
-    Integer probabilityToGenerateValidTicket = 3600;
+    Integer probabilityToGenerateValidTicket = 300;
     private Integer totalValidTicketsProduced = 0;
     Random random = new Random();
     Logger logger = LoggerFactory.getLogger(TicketCreationService.class);
@@ -29,9 +29,10 @@ public class TicketCreationService {
     }
 
     private Ticket createValidTicket() {
-        logger.info("Creating VALID ticket! Total valid tickets="+totalValidTicketsProduced);
         Calendar calendar = new GregorianCalendar(2018, 0, 20, 20, 00);
-        return new Ticket(new Date(), calendar.getTime(), "Salka 605", "VALID TICKET!");
+        Ticket ticket = new Ticket(new Date(), calendar.getTime(), "Salka 605", "VALID TICKET!");
+        logger.info("Valid ticket created:\n" + ticket.toString());
+        return ticket;
     }
 
     private Ticket createInvalidTicket() {

@@ -1,5 +1,9 @@
 package net.siekiera.kafkaproducer.Tickets;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -60,5 +64,19 @@ public class Ticket {
 
     public void setEventName(String eventName) {
         this.eventName = eventName;
+    }
+
+    @Override
+    public String toString() {
+        String returnValue=null;
+        ObjectMapper objectMapper = new ObjectMapper();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss,SSS");
+        objectMapper.setDateFormat(sdf);
+        try {
+            returnValue = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return returnValue;
     }
 }
