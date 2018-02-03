@@ -11,18 +11,18 @@ import java.util.UUID;
  * Created by W. Siekiera on 20.01.2018
  */
 public class Ticket {
-    String eventName;
+    String encryptedEventName;
     Date eventDate;
     String eventLocation;
     Date ticketCreationDate;
     String uniqueTicketNumber;
 
 
-    public Ticket(Date ticketCreationDate, Date eventDate, String eventLocation, String eventName) {
+    public Ticket(Date ticketCreationDate, Date eventDate, String eventLocation, String encryptedEventName) {
         this.ticketCreationDate = ticketCreationDate;
         this.eventDate = eventDate;
         this.eventLocation = eventLocation;
-        this.eventName = eventName;
+        this.encryptedEventName = encryptedEventName;
         this.uniqueTicketNumber = UUID.randomUUID().toString();
     }
 
@@ -58,12 +58,12 @@ public class Ticket {
         this.uniqueTicketNumber = uniqueTicketNumber;
     }
 
-    public String getEventName() {
-        return eventName;
+    public String getEncryptedEventName() {
+        return encryptedEventName;
     }
 
-    public void setEventName(String eventName) {
-        this.eventName = eventName;
+    public void setEncryptedEventName(String encryptedEventName) {
+        this.encryptedEventName = encryptedEventName;
     }
 
     @Override

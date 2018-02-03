@@ -9,21 +9,21 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
-//@RunWith(SpringRunner.class)
+@RunWith(SpringRunner.class)
 //@SpringBootTest
 public class KafkaproducerApplicationTests {
 //    @Autowired
 //    EncryptService encryptService;
-
-    private final String toEncrypt1 = "test";
-    private final String toEncrypt2 = "testtestrrr";
-    private final String toEncrypt3 = "dlugi ciag znakow!";
-    private final String toEncrypt4 = "externally encrypted string";
-
-    private final String encrypted1 = "098f6bcd4621d373cade4e832627b4f6";
-    private final String encrypted2 = "a168d70ced5d3f1fed60578c47784075";
-    private final String encrypted3 = "7acea3a8a75d5012917e58dd06a238fc";
-    private final String encrypted4 = "12f5d6f6d25e8649f6f481ec0b23df2a";
+//
+//    private final String toEncrypt1 = "test";
+//    private final String toEncrypt2 = "testtestrrr";
+//    private final String toEncrypt3 = "dlugi ciag znakow!";
+//    private final String toEncrypt4 = "externally encrypted string";
+//
+//    private final String encrypted1 = "098f6bcd4621d373cade4e832627b4f6";
+//    private final String encrypted2 = "a168d70ced5d3f1fed60578c47784075";
+//    private final String encrypted3 = "7acea3a8a75d5012917e58dd06a238fc";
+//    private final String encrypted4 = "12f5d6f6d25e8649f6f481ec0b23df2a";
 
     @Test
     public void contextLoads() {

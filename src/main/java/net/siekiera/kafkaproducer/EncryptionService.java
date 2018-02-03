@@ -10,7 +10,7 @@ import java.security.NoSuchAlgorithmException;
  * Created by W. Siekiera on 20.01.2018
  */
 @Service
-public class EncryptService {
+public class EncryptionService {
     /**
      * Creates md5 hash from plain text
      * @param textToEncrypt
