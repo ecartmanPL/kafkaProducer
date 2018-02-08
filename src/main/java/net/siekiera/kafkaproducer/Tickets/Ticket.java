@@ -15,7 +15,7 @@ public class Ticket {
     Date eventDate;
     String eventLocation;
     Date ticketCreationDate;
-    String uniqueTicketNumber;
+    String ticketUUID;
 
 
     public Ticket(Date ticketCreationDate, Date eventDate, String eventLocation, String encryptedEventName) {
@@ -23,7 +23,7 @@ public class Ticket {
         this.eventDate = eventDate;
         this.eventLocation = eventLocation;
         this.encryptedEventName = encryptedEventName;
-        this.uniqueTicketNumber = UUID.randomUUID().toString();
+        this.ticketUUID = UUID.randomUUID().toString();
     }
 
     public Date getTicketCreationDate() {
@@ -50,12 +50,12 @@ public class Ticket {
         this.eventLocation = eventLocation;
     }
 
-    public String getUniqueTicketNumber() {
-        return uniqueTicketNumber;
+    public String getTicketUUID() {
+        return ticketUUID;
     }
 
-    public void setUniqueTicketNumber(String uniqueTicketNumber) {
-        this.uniqueTicketNumber = uniqueTicketNumber;
+    public void setTicketUUID(String ticketUUID) {
+        this.ticketUUID = ticketUUID;
     }
 
     public String getEncryptedEventName() {
